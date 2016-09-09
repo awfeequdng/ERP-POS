@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AboutDialog2</class>
+ <widget class="QDialog" name="AboutDialog2">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../res.qrc">
+    <normaloff>:/image/关于.png</normaloff>:/image/关于.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	background-color: rgb(255, 255, 231);
+}</string>
+  </property>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>381</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="plainText">
+    <string>如果您还没有购买本软件，请点击购买：
+加密锁版：在线购买
+机器码版：在线购买
+如果您已经购买过本软件，请执行以下操作：
+
+选择您的注册类型
+如果您的注册类型是加密锁版，请把我们给您邮递的加密锁插入电脑U盘口中，同时在最下面勾选“加密锁版”；否则，请勾选“机器码版”； 
+请在“用户名”一栏中输入您注册时提供的注册名 
+请从我们发给您的注册文件（或者邮件）中复制注册码，然后在“注册码”一栏中粘贴进去 
+点击按钮“注册”，软件会提示要关闭系统。 
+关闭窗口，退出本软件，再重新打开软件 
+请查看软件最上方的标题中，如果不含“免费”二字，则表明已经注册成功 
+</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
