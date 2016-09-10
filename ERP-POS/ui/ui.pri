@@ -15,6 +15,7 @@ FORMS += \
     ui/aboutdialog2.ui \
     ui/aboutdialog3.ui \
     ui/aboutdialog4.ui \
+    ui/logindialog.ui
 
 
 HEADERS += \
@@ -37,6 +38,7 @@ HEADERS += \
     ui/aboutdialog2.h \
     ui/aboutdialog3.h \
     ui/aboutdialog4.h \
+    ui/logindialog.h
 
 SOURCES += \
     ui/addmember.cpp \
@@ -55,3 +57,4 @@ SOURCES += \
     ui/aboutdialog2.cpp \
     ui/aboutdialog3.cpp \
     ui/aboutdialog4.cpp \
+    ui/logindialog.cpp

@@ -5,8 +5,6 @@
 #include <QString>
 #include <QMainWindow>
 
-#include "loginuser.h"
-
 namespace Ui {
 class LoginDialog;
 }
@@ -28,7 +26,6 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
-    LoginUserList m_loginuserlist;
     QMainWindow *mainwindow;
 };
 

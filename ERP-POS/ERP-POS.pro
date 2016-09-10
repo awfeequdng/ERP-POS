@@ -17,16 +17,13 @@ INCLUDEPATH += $$PWD/basedata
 include(query/query.pri)
 INCLUDEPATH += $$PWD/query
 
-include(logicallayer/logicallayer.pri)
-INCLUDEPATH += $$PWD/logicallayer
+include(logical/logical.pri)
+INCLUDEPATH += $$PWD/logical
 
 include(ui/ui.pri)
 INCLUDEPATH += $$PWD/ui
 
-include(main/main.pri)
-INCLUDEPATH += $$PWD/main
-
 RESOURCES += \
     res.qrc
 
-win32:RC_FILE = SmartHome.rc
+win32:RC_FILE = ico.rc
