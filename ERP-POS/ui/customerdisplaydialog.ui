@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CheckOkDialog</class>
- <widget class="QDialog" name="CheckOkDialog">
+ <class>CustomerDisplayDialog</class>
+ <widget class="QDialog" name="CustomerDisplayDialog">
   <property name="geometry">
    <rect>
     <x>0</x>

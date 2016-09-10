@@ -3,7 +3,7 @@
 #include <QDebug>
 
 #include "instore.h"
-#include "checkdialog.h"
+#include "PosDialog.h"
 #include "returnstore.h"
 #include "outstore.h"
 #include "store.h"
@@ -75,8 +75,6 @@ MainWindow::MainWindow(QWidget *parent) :
     action4 = menu->addAction("商品类别管理");
     action5 = menu->addAction("导购员管理");
     action6 = menu->addAction("商品免税设置");
-
-    checkoutui = NULL;
 
     if(LoginDialog::staffId == "cashier")
     {
@@ -360,7 +358,7 @@ void MainWindow::on_checkoutButton_clicked()
 {
     if ( checkoutui == NULL )
     {
-        checkoutui = new CheckDialog(this);
+        checkoutui = new PosDialog(this);
     }
     checkoutui->setSerialNumber();
     checkoutui->show();
@@ -875,7 +873,6 @@ void MainWindow::on_aboutButton_clicked()
 {
     AboutDialog4 *AboutDialog4ui = new AboutDialog4;
     AboutDialog4ui->show();
-
 }
 //刷新
 void MainWindow::on_refreshButton_clicked()

@@ -1,24 +1,24 @@
-#ifndef CHECKDIALOG_H
-#define CHECKDIALOG_H
+#ifndef PosDialog_H
+#define PosDialog_H
 
 #include <QDialog>
 #include "serialnumber.h"
 #include "discountdialog.h"
-#include "checkokdialog.h"
+#include "CustomerDisplayDialog.h"
 #include <QList>
 #include <QMap>
 
 namespace Ui {
-class CheckDialog;
+class PosDialog;
 }
 
-class CheckDialog : public QDialog
+class PosDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CheckDialog(QWidget *parent = 0);
-    ~CheckDialog();
+    explicit PosDialog(QWidget *parent = 0);
+    ~PosDialog();
 
     //获取流水号
     void setSerialNumber();
@@ -43,7 +43,7 @@ private slots:
     void slot_quit();
 
 private:
-    Ui::CheckDialog *ui;
+    Ui::PosDialog *ui;
 
     SerialNumber *getserial;
 
@@ -51,11 +51,11 @@ private:
 
     DiscountDialog *discountui;
 
-    CheckOkDialog *dialogui;
+    CustomerDisplayDialog *dialogui;
 
     QString saleDate;
 
     QMap<QString, QString> m_productIdAndPriceMap;
 };
 
-#endif // CHECKDIALOG_H
+#endif // PosDialog_H

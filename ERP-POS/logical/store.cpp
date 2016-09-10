@@ -1,7 +1,7 @@
 #include "store.h"
 #include "instore.h"
 #include "outstore.h"
-#include "checkdialog.h"
+#include "PosDialog.h"
 #include "returnstore.h"
 
 #include <QString>

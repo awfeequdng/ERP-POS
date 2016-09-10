@@ -9,7 +9,7 @@
 #include <saleanalysis.h>
 #include "discountgoodinfo.h"
 
-class CheckDialog;
+class PosDialog;
 
 namespace Ui {
 class MainWindow;
@@ -139,7 +139,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    CheckDialog *checkoutui;
+    PosDialog *checkoutui;
 
     QAction *action1;
     QAction *action2;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CheckDialog</class>
- <widget class="QDialog" name="CheckDialog">
+ <class>PosDialog</class>
+ <widget class="QDialog" name="PosDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,7 @@
    <string>Dialog</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="res.qrc">
+   <iconset resource="../res.qrc">
     <normaloff>:/image/收银台.png</normaloff>:/image/收银台.png</iconset>
   </property>
   <property name="styleSheet">
@@ -585,7 +585,7 @@ border-style: inset; }</string>
   </widget>
  </widget>
  <resources>
-  <include location="res.qrc"/>
+  <include location="../res.qrc"/>
  </resources>
  <connections/>
 </ui>

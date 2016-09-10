@@ -1,8 +1,5 @@
 FORMS += \
     ui/addmember.ui \
-    ui/checkbigdialog.ui \
-    ui/checkdialog.ui \
-    ui/checkokdialog.ui \
     ui/discountdialog.ui \
     ui/instore.ui \
     ui/mainwindow.ui \
@@ -15,13 +12,13 @@ FORMS += \
     ui/aboutdialog2.ui \
     ui/aboutdialog3.ui \
     ui/aboutdialog4.ui \
-    ui/logindialog.ui
+    ui/logindialog.ui \
+    $$PWD/posdialog.ui \
+    $$PWD/customerdisplaydialog.ui
 
 
 HEADERS += \
     ui/addmember.h \
-    ui/checkdialog.h \
-    ui/checkokdialog.h \
     ui/checkout.h \
     ui/discountdialog.h \
     ui/instore.h \
@@ -38,12 +35,12 @@ HEADERS += \
     ui/aboutdialog2.h \
     ui/aboutdialog3.h \
     ui/aboutdialog4.h \
-    ui/logindialog.h
+    ui/logindialog.h \
+    $$PWD/posdialog.h \
+    $$PWD/customerdisplaydialog.h
 
 SOURCES += \
     ui/addmember.cpp \
-    ui/checkdialog.cpp \
-    ui/checkokdialog.cpp \
     ui/discountdialog.cpp \
     ui/instore.cpp \
     ui/mainwindow.cpp \
@@ -57,4 +54,6 @@ SOURCES += \
     ui/aboutdialog2.cpp \
     ui/aboutdialog3.cpp \
     ui/aboutdialog4.cpp \
-    ui/logindialog.cpp
+    ui/logindialog.cpp \
+    $$PWD/posdialog.cpp \
+    $$PWD/customerdisplaydialog.cpp
