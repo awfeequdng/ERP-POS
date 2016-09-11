@@ -1,7 +1,6 @@
 #include "staffinfo.h"
 
-staffInfo::staffInfo(QObject *parent) :
-    QObject(parent)
+staffInfo::staffInfo()
 {  
 }
 

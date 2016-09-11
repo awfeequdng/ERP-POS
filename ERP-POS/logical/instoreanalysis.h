@@ -20,14 +20,6 @@ public:
 
     }
 
-    InstoreAnalysis operator = (const InstoreAnalysis &other)
-    {
-        ProductType::operator =(other);
-        InstoreInfo::operator =(other);
-        SupplyInfo::operator =(other);
-    }
-
-
     InstoreAnalysis(const QString &producyId, const QString &productName,
                     const QString &unit, const QString &classes,const QString &qualification,
                     const QString &itemNum, const QString &brand, const QString &purchasePrice,

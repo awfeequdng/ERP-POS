@@ -1,29 +1,21 @@
 #ifndef STOREINFO_H
 #define STOREINFO_H
 
-#include <QObject>
+#include <QString>
 
-class storeInfo : public QObject
+class storeInfo
 {
-    Q_OBJECT
 public:
-    explicit storeInfo(QObject *parent = 0);
+    explicit storeInfo();
     storeInfo(const QString &Number);
 
     storeInfo(const storeInfo &other);
 
     storeInfo operator =(const storeInfo &other);
 
-//    bool operator ==(const storeInfo &other);
-//    bool operator <(const storeInfo &other);
-
     QString Number() const;
 
     void setNumber(const QString &Number);
-
-signals:
-
-public slots:
 
 private:
     QString m_Number;

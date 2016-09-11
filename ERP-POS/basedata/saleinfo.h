@@ -1,13 +1,12 @@
 #ifndef SALEINFO_H
 #define SALEINFO_H
 
-#include <QObject>
+#include <QString>
 
-class saleInfo : public QObject
+class saleInfo
 {
-    Q_OBJECT
 public:
-    explicit saleInfo(QObject *parent = 0);
+    saleInfo();
 
     saleInfo(const QString &saleDate, const QString &serialNumber, const QString &saleNum,
              const QString &profit, const QString &profitRate, const QString &salenumSum,
@@ -18,9 +17,6 @@ public:
     saleInfo(const saleInfo &other);
 
     saleInfo operator =(const saleInfo &other);
-
-//    bool operator ==(const saleInfo &other);
-//    bool operator <(const saleInfo &other);
 
     QString saleDate() const;
     void setSaleDate(const QString &saleDate);
@@ -36,8 +32,6 @@ public:
 
     QString profitRate() const;
     void setProfitRate(const QString &profitRate);
-
-
 
     QString salenumSum() const;
     void setSalenumSum(const QString &salenumSum);
@@ -66,10 +60,6 @@ public:
 
     QString change() const;
     void setChange(const QString &change);
-
-signals:
-
-public slots:
 
 private:
     QString m_saleDate;

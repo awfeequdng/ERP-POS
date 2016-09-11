@@ -165,7 +165,7 @@ QTabBar::tab:!selected{
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="tab">
           <attribute name="title">
@@ -1906,7 +1906,7 @@ border: 1px solid #000000；
               <enum>QTabWidget::Triangular</enum>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>19</number>
              </property>
              <property name="elideMode">
               <enum>Qt::ElideNone</enum>
@@ -8254,7 +8254,7 @@ QWidget#toolWidget_4{
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTableWidget" name="tableWidget_66">
+                   <widget class="QTableWidget" name="noSetPointTable">
                     <column>
                      <property name="text">
                       <string>选中</string>
@@ -8521,7 +8521,7 @@ QWidget#toolWidget_4{
                    </widget>
                   </item>
                   <item>
-                   <widget class="QTableWidget" name="tableWidget_67">
+                   <widget class="QTableWidget" name="setPointTable">
                     <column>
                      <property name="text">
                       <string>选中</string>
@@ -11108,7 +11108,7 @@ border-style: inset; }</string>
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QLabel" name="label_71">
+        <widget class="QLabel" name="currentTimeLabel">
          <property name="minimumSize">
           <size>
            <width>431</width>

@@ -23,8 +23,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void closeTab();
     virtual void keyPressEvent(QKeyEvent *);
+    void setCurrentTime();
 
 private slots:
 
@@ -35,8 +35,6 @@ private slots:
     void on_checkoutButton_clicked();
 
     void on_scanButton_clicked();
-
-    void removeSubTab(int index);
 
     void on_salesReturnButton_clicked();
 
@@ -50,10 +48,6 @@ private slots:
     void on_outstoreButton_clicked();
 
     void on_outstoreStatisticsButton_clicked();
-
-    void timerUpDate();
-
-    void slot_clicked(QAction *);
 
     void on_paintButton_clicked();
 
@@ -139,7 +133,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    PosDialog *checkoutui;
+    PosDialog *posDialog;
 
     QAction *action1;
     QAction *action2;
@@ -147,8 +141,6 @@ private:
     QAction *action4;
     QAction *action5;
     QAction *action6;
-
-    QMainWindow *mainwindowui;
 
 protected:
     virtual void resizeEvent (QResizeEvent *);

@@ -7,25 +7,17 @@
 #include <staffinfo.h>
 
 class SaleDetail : public ProductType, public SupplyInfo,
-         public saleInfo,public staffInfo
+        public saleInfo,public staffInfo
 {
 public:
     SaleDetail();
 
     SaleDetail( const SaleDetail &other )
         :ProductType(other),
-          saleInfo(other),
           SupplyInfo(other),
+          saleInfo(other),
           staffInfo(other)
     {
-    }
-
-    SaleDetail operator = (const SaleDetail &other)
-    {
-        ProductType::operator =(other);
-        saleInfo::operator =(other);
-        SupplyInfo::operator =(other);
-        staffInfo::operator =(other);
     }
 
     SaleDetail(const QString &productId, const QString &productName,
@@ -43,16 +35,16 @@ public:
                const QString &favorableSum, const QString &profitSum,
                const QString &shouldreceive, const QString &reallyreceive, const QString &change,
                const QString &staffId,const QString &staffName
-                    )
+               )
         :ProductType(productId,productName,unit,classes,qualification,itemNum,brand,purchasePrice,
                      retailPrice,memberPrice,creditScheme,conversion,discountScheme,warningNum,
                      productDate,lifeDate,warningDate,batchNum,remarks),
+          SupplyInfo(supplyId,supplyname),
           saleInfo(saleDate,serialNumber,saleNum,profit,profitRate,salenumSum,saleSum,
                    purchaseSum,discountSum,favorableSum,profitSum,shouldreceive,
                    reallyreceive,change),
-          SupplyInfo(supplyId,supplyname),
           staffInfo(staffId,staffName)
-            {}
+    {}
 };
 
 typedef QList<SaleDetail> SaleDetailList;

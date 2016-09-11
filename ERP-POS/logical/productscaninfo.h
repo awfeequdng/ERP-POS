@@ -25,15 +25,6 @@ public:
     {
 
     }
-    ProductScanInfo operator = (const ProductScanInfo &other)
-    {
-        ProductType::operator =(other);
-        SupplyInfo::operator =(other);
-        InstoreInfo::operator =(other);
-        saleInfo::operator =(other);
-        outStoreInfo::operator =(other);
-        storeInfo::operator =(other);
-    }
 
     ProductScanInfo(const QString &producyId, const QString &productName,
                     const QString &unit, const QString &classes,const QString &qualification,

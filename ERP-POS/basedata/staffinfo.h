@@ -1,13 +1,12 @@
 #ifndef STAFFINFO_H
 #define STAFFINFO_H
 
-#include <QObject>
+#include <QString>
 
-class staffInfo : public QObject
+class staffInfo
 {
-    Q_OBJECT
 public:
-    explicit staffInfo(QObject *parent = 0);
+    explicit staffInfo();
 
     staffInfo(const QString &staffId,const QString &staffName);
 
@@ -23,10 +22,6 @@ public:
 
     QString staffName() const;
     void setStaffName(const QString &staffName);
-
-signals:
-
-public slots:
 
 private:
     QString m_staffId;

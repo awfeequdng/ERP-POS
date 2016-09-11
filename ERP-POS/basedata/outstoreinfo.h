@@ -3,20 +3,16 @@
 
 #include <QObject>
 
-class outStoreInfo : public QObject
+class outStoreInfo
 {
-    Q_OBJECT
 public:
-    explicit outStoreInfo(QObject *parent = 0);
+    explicit outStoreInfo();
     outStoreInfo(const QString &outstoreDate,const QString &outstoreprice,const QString &outstoreNum);
 
     outStoreInfo(const QString &outstoreprice,const QString &outstoreNum);
     outStoreInfo(const outStoreInfo &other);
 
     outStoreInfo operator =(const outStoreInfo &other);
-
-//    bool operator ==(const outStoreInfo &other);
-//    bool operator <(const outStoreInfo &other);
 
     QString outstoreDate() const;
     void setOutstoreDate(const QString &outstoreDate);

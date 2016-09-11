@@ -1,13 +1,12 @@
 #ifndef PRODUCTTYPE_H
 #define PRODUCTTYPE_H
 
-#include <QObject>
+#include <QString>
 
-class ProductType : public QObject
+class ProductType
 {
-    Q_OBJECT
 public:
-    explicit ProductType(QObject *parent = 0);
+    explicit ProductType();
 
     ProductType(const ProductType &other);
 
@@ -21,7 +20,7 @@ public:
                 const QString &retailPrice, const QString &memberPrice, const QString &creditScheme,
                 const QString &conversion, const QString &discountScheme, const QString &warningNum,
                 const QString &productDate, const QString &lifeDate, const QString &warningDate,
-                const QString &batchNum, const QString &remarks, QObject *parent = 0);
+                const QString &batchNum, const QString &remarks);
 
     QString productId() const;
     void setProductId(const QString &productId);
@@ -79,10 +78,6 @@ public:
 
     QString classes() const;
     void setClasses(const QString &classes);
-
-signals:
-
-public slots:
 
 private:
     QString m_productId;

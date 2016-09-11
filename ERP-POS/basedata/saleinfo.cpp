@@ -1,7 +1,6 @@
 #include "saleinfo.h"
 
-saleInfo::saleInfo(QObject *parent) :
-    QObject(parent)
+saleInfo::saleInfo()
 {
 }
 

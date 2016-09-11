@@ -1,7 +1,6 @@
 #include "supplyinfo.h"
 
-SupplyInfo::SupplyInfo(QObject *parent) :
-    QObject(parent)
+SupplyInfo::SupplyInfo()
 {
 }
 

@@ -1,7 +1,6 @@
 #include "outstoreinfo.h"
 
-outStoreInfo::outStoreInfo(QObject *parent) :
-    QObject(parent)
+outStoreInfo::outStoreInfo()
 {
 }
 

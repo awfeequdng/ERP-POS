@@ -1,7 +1,6 @@
 #include "producttype.h"
 
-ProductType::ProductType(QObject *parent) :
-    QObject(parent)
+ProductType::ProductType()
 {
 }
 
@@ -76,9 +75,7 @@ ProductType::ProductType(const QString &id, const QString &name,const QString &u
                          const QString &retailPrice, const QString &memberPrice, const QString &creditScheme,
                          const QString &conversion, const QString &discountScheme, const QString &warningNum,
                          const QString &productDate, const QString &lifeDate, const QString &warningDate,
-                         const QString &batchNum, const QString &remarks,
-                         QObject *parent) :
-    QObject(parent)
+                         const QString &batchNum, const QString &remarks)
 {
     m_productId = id;
     m_productName = name;

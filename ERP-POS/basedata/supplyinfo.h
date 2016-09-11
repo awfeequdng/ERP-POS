@@ -1,13 +1,12 @@
 #ifndef SUPPLYINFO_H
 #define SUPPLYINFO_H
 
-#include <QObject>
+#include <QString>
 
-class SupplyInfo : public QObject
+class SupplyInfo
 {
-    Q_OBJECT
 public:
-    explicit SupplyInfo(QObject *parent = 0);
+    explicit SupplyInfo();
 
     SupplyInfo(const QString &supplyId,const QString &supplyName);
 
@@ -23,10 +22,6 @@ public:
 
     QString supplyId() const;
     void setSupplyId(const QString &supplyId);
-
-signals:
-
-public slots:
 
 private:
     QString m_supplyId;

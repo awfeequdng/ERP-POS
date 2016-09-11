@@ -3,11 +3,10 @@
 
 #include <QObject>
 
-class InstoreInfo : public QObject
+class InstoreInfo
 {
-    Q_OBJECT
 public:
-    explicit InstoreInfo(QObject *parent = 0);
+    explicit InstoreInfo();
 
     InstoreInfo(const QString &instoreDate, const QString &instoreNum);
 

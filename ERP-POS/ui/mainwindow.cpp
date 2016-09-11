@@ -57,24 +57,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("超市收银系统");
     this->showMaximized();//窗口自适应屏幕大小
-    checkoutui = NULL;//下边checkui要判断
-    closeTab();//关闭tab的
-    ui->TabWidget->clear();//清空中间选项卡，显示背景
+    posDialog = NULL;//下边checkui要判断
+    ui->stackedWidget->setCurrentWidget(ui->page);
+    setCurrentTime();
 
-    QTimer *timer = new QTimer(this);//定时器
-    connect(timer, SIGNAL(timeout()), this, SLOT(timerUpDate()));
-    timer->start(1000);
-
-    //其他按钮的下拉实现
-    QMenu* menu = ui->otherButton->getmenu();//获得菜单，并向上面添加菜单
-    connect(menu, SIGNAL(triggered(QAction *)),this,SLOT(slot_clicked(QAction *)));
-    connect(ui->tableWidget_66, SIGNAL(cellChanged(int,int)), this, SLOT(checkBoxChange(int, int)));
-    action1 = menu->addAction("供货商管理");
-    action2 = menu->addAction("商品补货");
-    action3 = menu->addAction("保质期提醒");
-    action4 = menu->addAction("商品类别管理");
-    action5 = menu->addAction("导购员管理");
-    action6 = menu->addAction("商品免税设置");
+    connect(ui->noSetPointTable, SIGNAL(cellChanged(int,int)), this, SLOT(checkBoxChange(int, int)));
 
     if(LoginDialog::staffId == "cashier")
     {
@@ -87,51 +74,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::slot_clicked(QAction *ev)
-{
-    qDebug()<<"已经点击"<<ev->text();
-    if(ev = action1 )
-    {
-        ui->TabWidget->addTab(ui->tab_14, "供货商管理");
-        ui->TabWidget->setCurrentWidget(ui->tab_14);
-    }
-    if(ev = action2 )
-    {
-        ui->TabWidget->addTab(ui->tab_15, "商品补货");
-        ui->TabWidget->setCurrentWidget(ui->tab_14);
-    }
-    if(ev = action3 )
-    {
-        ui->TabWidget->addTab(ui->tab_16, "保质期提醒");
-        ui->TabWidget->setCurrentWidget(ui->tab_14);
-    }
-    if(ev = action4 )
-    {
-
-    }
-    if(ev = action5 )
-    {
-
-    }
-    if(ev = action6 )
-    {
-        ui->TabWidget->addTab(ui->tab_14, "商品免税设置");
-        ui->TabWidget->setCurrentWidget(ui->tab_17);
-    }
-}
 //主界面时间更新函数
-void MainWindow::timerUpDate()
+void MainWindow::setCurrentTime()
 {
     QDateTime dt = QDateTime::currentDateTime();
     QString currDateTimeStr = dt.toString(" yyyy-MM-dd  当前时间: hh:mm:ss");
-    ui->label_71->setText(currDateTimeStr);
+    ui->currentTimeLabel->setText(currDateTimeStr);
 }
-//双击关闭按钮关闭选项卡的方法
-void MainWindow::closeTab()
-{
-    connect(ui->TabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(removeSubTab(int)));
-}
+
 //实现键盘事件监听
 void MainWindow::keyPressEvent(QKeyEvent *)
 {
@@ -178,16 +128,6 @@ void MainWindow::setCashierPermiss()
     ui->staffGoveButton->setEnabled(false);
 }
 
-void MainWindow::removeSubTab(int)
-{
-    //    qDebug() << "current index " << ui->TabWidget->currentIndex();
-    ui->TabWidget->removeTab(ui->TabWidget->currentIndex());
-    if(ui->TabWidget->count() <= 0)
-    {
-        ui->stackedWidget->setCurrentWidget(ui->page);
-    }
-}
-
 //商品入库
 void MainWindow::on_inStoreButton_clicked()
 {
@@ -206,10 +146,10 @@ void MainWindow::resizeEvent(QResizeEvent *)
 
 void MainWindow::updateLeftList(discountGoodInfoList InfoList)
 {
-    int j =  ui->tableWidget_66->rowCount();
+    int j =  ui->noSetPointTable->rowCount();
 
     if(InfoList.size() > 0){
-        ui->tableWidget_66->insertRow(j);//在第j行添加一行
+        ui->noSetPointTable->insertRow(j);//在第j行添加一行
     }
     for ( int i = 0; i < InfoList.size(); i++ )
     {
@@ -219,19 +159,19 @@ void MainWindow::updateLeftList(discountGoodInfoList InfoList)
         QTableWidgetItem *productNameItem = new QTableWidgetItem(InfoList.at(i).getProductName());
         QTableWidgetItem *creditItem = new QTableWidgetItem(InfoList.at(i).getCredits());
 
-        ui->tableWidget_66->setItem(j, 0, checkBox);
-        ui->tableWidget_66->setItem(j, 1, productIdItem);
-        ui->tableWidget_66->setItem(j, 2, productNameItem);
-        ui->tableWidget_66->setItem(j, 3, creditItem);
+        ui->noSetPointTable->setItem(j, 0, checkBox);
+        ui->noSetPointTable->setItem(j, 1, productIdItem);
+        ui->noSetPointTable->setItem(j, 2, productNameItem);
+        ui->noSetPointTable->setItem(j, 3, creditItem);
 
         //字体全部中间
         productIdItem->setTextAlignment(Qt::AlignCenter);
         productNameItem->setTextAlignment(Qt::AlignCenter);
         creditItem->setTextAlignment(Qt::AlignCenter);
 
-        ui->tableWidget_66->setFont(QFont("宋体",9));
-        ui->tableWidget_66->setSelectionBehavior(QTableWidget::SelectRows);//一次选中一行
-        ui->tableWidget_66->setEditTriggers(QTableWidget::NoEditTriggers);//不能编辑
+        ui->noSetPointTable->setFont(QFont("宋体",9));
+        ui->noSetPointTable->setSelectionBehavior(QTableWidget::SelectRows);//一次选中一行
+        ui->noSetPointTable->setEditTriggers(QTableWidget::NoEditTriggers);//不能编辑
         j++;
     }
 }
@@ -239,20 +179,20 @@ void MainWindow::updateLeftList(discountGoodInfoList InfoList)
 void MainWindow::getLeftSelectedRecordsList()
 {
     selectedLeftRecordsList.clear();
-    int rowCount = ui->tableWidget_66->rowCount();
+    int rowCount = ui->noSetPointTable->rowCount();
     DiscountGoodInfo discountGoodInfo;
 
     for(int i = 0; i < rowCount; i++)
     {
-        if(ui->tableWidget_66->item(i, 0)->checkState() == Qt::Checked) //选中
+        if(ui->noSetPointTable->item(i, 0)->checkState() == Qt::Checked) //选中
         {
             QString productId;
             QString productName;
             QString credit;
 
-            QTableWidgetItem *productIdItem = ui->tableWidget_66->item(i,1);
-            QTableWidgetItem *productNameItem = ui->tableWidget_66->item(i,2);
-            QTableWidgetItem *creditItem = ui->tableWidget_66->item(i,3);
+            QTableWidgetItem *productIdItem = ui->noSetPointTable->item(i,1);
+            QTableWidgetItem *productNameItem = ui->noSetPointTable->item(i,2);
+            QTableWidgetItem *creditItem = ui->noSetPointTable->item(i,3);
 
             productId = productIdItem->text();
             productName = productNameItem->text();
@@ -270,7 +210,7 @@ void MainWindow::getLeftSelectedRecordsList()
 void MainWindow::getLeftRecordsList()
 {
     leftRecordsList.clear();
-    int rowCount = ui->tableWidget_66->rowCount();
+    int rowCount = ui->noSetPointTable->rowCount();
     DiscountGoodInfo discountGoodInfo;
 
     for(int i = 0; i < rowCount; i++)
@@ -279,9 +219,9 @@ void MainWindow::getLeftRecordsList()
         QString productName;
         QString credit;
 
-        QTableWidgetItem *productIdItem = ui->tableWidget_66->item(i,1);
-        QTableWidgetItem *productNameItem = ui->tableWidget_66->item(i,2);
-        QTableWidgetItem *creditItem = ui->tableWidget_66->item(i,3);
+        QTableWidgetItem *productIdItem = ui->noSetPointTable->item(i,1);
+        QTableWidgetItem *productNameItem = ui->noSetPointTable->item(i,2);
+        QTableWidgetItem *creditItem = ui->noSetPointTable->item(i,3);
 
         productId = productIdItem->text();
         productName = productNameItem->text();
@@ -298,20 +238,20 @@ void MainWindow::getLeftRecordsList()
 void MainWindow::getRightSelectedRecordsList()
 {
     selectedRightRecordsList.clear();
-    int rowCount = ui->tableWidget_66->rowCount();
+    int rowCount = ui->noSetPointTable->rowCount();
     DiscountGoodInfo discountGoodInfo;
 
     for(int i = 0; i < rowCount; i++)
     {
-        if(ui->tableWidget_66->item(i, 0)->checkState() == Qt::Checked) //选中
+        if(ui->noSetPointTable->item(i, 0)->checkState() == Qt::Checked) //选中
         {
             QString productId;
             QString productName;
             QString credit;
 
-            QTableWidgetItem *productIdItem = ui->tableWidget_66->item(i,1);
-            QTableWidgetItem *productNameItem = ui->tableWidget_66->item(i,2);
-            QTableWidgetItem *creditItem = ui->tableWidget_66->item(i,3);
+            QTableWidgetItem *productIdItem = ui->noSetPointTable->item(i,1);
+            QTableWidgetItem *productNameItem = ui->noSetPointTable->item(i,2);
+            QTableWidgetItem *creditItem = ui->noSetPointTable->item(i,3);
 
             productId = productIdItem->text();
             productName = productNameItem->text();
@@ -329,7 +269,7 @@ void MainWindow::getRightSelectedRecordsList()
 void MainWindow::getRightRecordsList()
 {
     rightRecordsList.clear();
-    int rowCount = ui->tableWidget_67->rowCount();
+    int rowCount = ui->setPointTable->rowCount();
     DiscountGoodInfo discountGoodInfo;
 
     for(int i = 0; i < rowCount; i++)
@@ -338,9 +278,9 @@ void MainWindow::getRightRecordsList()
         QString productName;
         QString credit;
 
-        QTableWidgetItem *productIdItem = ui->tableWidget_67->item(i,1);
-        QTableWidgetItem *productNameItem = ui->tableWidget_67->item(i,2);
-        QTableWidgetItem *creditItem = ui->tableWidget_67->item(i,3);
+        QTableWidgetItem *productIdItem = ui->setPointTable->item(i,1);
+        QTableWidgetItem *productNameItem = ui->setPointTable->item(i,2);
+        QTableWidgetItem *creditItem = ui->setPointTable->item(i,3);
 
         productId = productIdItem->text();
         productName = productNameItem->text();
@@ -356,14 +296,14 @@ void MainWindow::getRightRecordsList()
 //收银台
 void MainWindow::on_checkoutButton_clicked()
 {
-    if ( checkoutui == NULL )
+    if ( posDialog == NULL )
     {
-        checkoutui = new PosDialog(this);
+        posDialog = new PosDialog(this);
     }
-    checkoutui->setSerialNumber();
-    checkoutui->show();
-    checkoutui->exec();
-    checkoutui->clearAll();
+    posDialog->setSerialNumber();
+    posDialog->show();
+    posDialog->exec();
+    posDialog->clearAll();
 }
 //商品浏览
 void MainWindow::on_scanButton_clicked()
@@ -882,7 +822,7 @@ void MainWindow::on_refreshButton_clicked()
 //左边的tableWidget中的一行被选中的操作（暂时不做）
 void MainWindow::checkBoxChange(int row, int col)
 {
-    if(ui->tableWidget_66->item(row, col)->checkState() == Qt::Checked) //选中
+    if(ui->noSetPointTable->item(row, col)->checkState() == Qt::Checked) //选中
     {
 //        qDebug() << row << col;
     }
@@ -915,11 +855,11 @@ void MainWindow::on_pushButton_right_clicked()
         }
     }
 
-    int j =  ui->tableWidget_67->rowCount();
+    int j =  ui->setPointTable->rowCount();
 
     for ( int i = 0; i < selectedLeftRecordsList.size(); i++ )
     {
-        ui->tableWidget_67->insertRow(j);//在第j行添加一行
+        ui->setPointTable->insertRow(j);//在第j行添加一行
 
         QTableWidgetItem *checkBox1 = new QTableWidgetItem();
         checkBox1->setCheckState(Qt::Checked);
@@ -929,26 +869,26 @@ void MainWindow::on_pushButton_right_clicked()
         QTableWidgetItem *checkBox2 = new QTableWidgetItem();
         checkBox2->setCheckState(Qt::Checked);
 
-        ui->tableWidget_67->setItem(j, 0, checkBox1);
-        ui->tableWidget_67->setItem(j, 1, productIdItem);
-        ui->tableWidget_67->setItem(j, 2, productNameItem);
-        ui->tableWidget_67->setItem(j, 3, creditItem);
-        ui->tableWidget_67->setItem(j, 4, checkBox2);
+        ui->setPointTable->setItem(j, 0, checkBox1);
+        ui->setPointTable->setItem(j, 1, productIdItem);
+        ui->setPointTable->setItem(j, 2, productNameItem);
+        ui->setPointTable->setItem(j, 3, creditItem);
+        ui->setPointTable->setItem(j, 4, checkBox2);
 
         //字体全部中间
         productIdItem->setTextAlignment(Qt::AlignCenter);
         productNameItem->setTextAlignment(Qt::AlignCenter);
         creditItem->setTextAlignment(Qt::AlignCenter);
 
-        ui->tableWidget_67->setFont(QFont("宋体",9));
-        ui->tableWidget_67->setSelectionBehavior(QTableWidget::SelectRows);//一次选中一行
-        ui->tableWidget_67->setEditTriggers(QTableWidget::NoEditTriggers);//不能编辑
+        ui->setPointTable->setFont(QFont("宋体",9));
+        ui->setPointTable->setSelectionBehavior(QTableWidget::SelectRows);//一次选中一行
+        ui->setPointTable->setEditTriggers(QTableWidget::NoEditTriggers);//不能编辑
         j++;
     }
 
     //更新左边的列表
-    ui->tableWidget_66->clearContents();
-    ui->tableWidget_66->setRowCount(0);
+    ui->noSetPointTable->clearContents();
+    ui->noSetPointTable->setRowCount(0);
     qDebug() << leftRecordsList.size();
     updateLeftList(leftRecordsList);
 }

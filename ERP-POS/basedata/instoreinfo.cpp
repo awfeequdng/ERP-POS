@@ -1,7 +1,6 @@
 #include "instoreinfo.h"
 
-InstoreInfo::InstoreInfo(QObject *parent) :
-    QObject(parent)
+InstoreInfo::InstoreInfo()
 {
 }
 
